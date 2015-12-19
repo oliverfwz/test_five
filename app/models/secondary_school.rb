@@ -1,0 +1,3 @@
+class SecondarySchool < School
+  
+end
