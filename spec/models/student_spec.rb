@@ -16,4 +16,17 @@ RSpec.describe Student, type: :model do
       end
     end
   end
+
+  context '#schoolmates' do
+    describe 'get list schoolmates' do
+      let!(:university) { create(:university) }
+
+      it 'show list of schoolmates' do
+        user = university.students.create(name: "Oliver", dob: "29-09-1991")
+        university.students.create(name: "Theo", dob: "29-09-1991")
+        expect(user.schoolmates.count).to eq 2
+        expect(user.schoolmates.first).to eq user
+      end
+    end
+  end
 end

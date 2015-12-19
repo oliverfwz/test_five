@@ -10,4 +10,10 @@ class Student < User
       errors.add(:dob, 'minimum 18 years')
     end
   end
+
+  def schoolmates
+  	school_ids = schools.pluck(:id)
+  	user_ids = SchoolUser.where(school_id: school_ids).pluck(:user_id)
+  	User.where(id: user_ids)
+  end
 end
