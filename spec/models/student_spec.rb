@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
+  context 'Association' do
+    it { is_expected.to have_many(:school_users) }
+    it { is_expected.to have_many(:schools) }
+  end
+  
   context 'Validation' do
     describe 'date of birth' do
       let!(:student) { Student.new(name: "Oliver", dob: DateTime.now) }
